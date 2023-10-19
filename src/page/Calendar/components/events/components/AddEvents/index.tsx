@@ -17,7 +17,7 @@ const initialValues = {
   end: "",
 };
 
-const Dados: Array<any> = [];
+const Dados: Array<FormikValues> = [];
 
 function AddEvents(props: AddEventsProps) {
   const { onClick } = props;
@@ -43,7 +43,7 @@ function AddEvents(props: AddEventsProps) {
       <Formik
         initialValues={initialValues}
         validate={(values) => {
-          const errors = {};
+          const errors: { name?: string; initial?: string; end?: string } = {};
 
           // Verifique se todos os campos estão vazios
           if (!values.name) {
