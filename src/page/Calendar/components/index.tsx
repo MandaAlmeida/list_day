@@ -4,6 +4,13 @@ import React, { useEffect, useState } from "react";
 import InputMask from "react-input-mask";
 import Events from "./events";
 
+interface dayObj {
+  day: number;
+  month: number;
+  isCurrentMonth: boolean;
+  isToday: boolean;
+}
+
 function PageCalendar() {
   const [date, setDate] = useState(new Date());
   const [today, setToday] = useState(new Date());
@@ -84,14 +91,14 @@ function PageCalendar() {
     const prevMonth = new Date(date);
     prevMonth.setMonth(date.getMonth() - 1);
     setDate(prevMonth);
-    setSelectedDate(null);
+    setSelectedDate(new Date());
   };
 
   const handleNextMonth = () => {
     const nextMonth = new Date(date);
     nextMonth.setMonth(date.getMonth() + 1);
     setDate(nextMonth);
-    setSelectedDate(null);
+    setSelectedDate(new Date());
   };
 
   const goToToday = () => {
@@ -99,7 +106,7 @@ function PageCalendar() {
     setSelectedDate(new Date());
   };
 
-  const handleDayClick = (day) => {
+  const handleDayClick = (day: dayObj) => {
     const month = date.getMonth();
 
     if (day.isCurrentMonth && day.month === month) {
@@ -145,7 +152,7 @@ function PageCalendar() {
       ) {
         const newDate = new Date(desiredYear, desiredMonth - 1, 1);
         setDate(newDate);
-        setSelectedDate(null);
+        setSelectedDate(new Date());
         setDesiredMonthYear("");
       } else {
         alert("Data inválida");

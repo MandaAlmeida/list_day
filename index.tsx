@@ -2,13 +2,18 @@ import { CaretLeft } from "@phosphor-icons/react";
 import { CaretRight } from "phosphor-react";
 import React, { useState } from "react";
 
+interface days {
+  day: number;
+  isCurrentMonth: boolean;
+}
+
 function Meses() {
   const [date, setDate] = useState(new Date());
 
   const daysOfWeek = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
 
   const generateDaysInMonth = () => {
-    const days = [];
+    const days: days[] = [];
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
